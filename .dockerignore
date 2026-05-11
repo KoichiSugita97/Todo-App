@@ -1,0 +1,10 @@
+# Ignore dependencies and build artifacts
+node_modules
+.next
+
+# Prevent copying custom Document to container
+#src/pages/_document.tsx
+
+# Typical Docker ignores
+Dockerfile
+docker-compose.yml

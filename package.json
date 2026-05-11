@@ -1,31 +1,42 @@
 {
-    "name":  "tododolist",
-    "version":  "1.0.0",
-    "main":  "index.js",
-    "scripts":  {
-                    "dev":  "next dev",
-                    "build":  "next build",
-                    "start":  "next start",
-                    "test":  "echo \"Error: no test specified\" \u0026\u0026 exit 1",
-                    "postinstall":  "prisma generate"
-                },
-    "keywords":  [
-
-                 ],
-    "author":  "",
-    "license":  "ISC",
-    "description":  "",
-    "dependencies":  {
-                         "@prisma/client":  "^6.6.0",
-                         "next":  "^15.3.0",
-                         "prisma":  "^6.6.0",
-                         "react":  "^19.1.0",
-                         "react-dom":  "^19.1.0",
-                         "typescript":  "^5.8.3"
-                     },
-    "devDependencies":  {
-                            "@types/node":  "^22.14.1",
-                            "@types/react":  "^19.1.1",
-                            "@types/react-dom":  "^19.1.1"
-                        }
+  "name": "tododolist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "prestart": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate",
+    "prisma:clean": "rimraf src/generated/prisma/query_engine-windows.dll.node*",
+    "prisma:regen": "npm run prisma:clean && npx prisma generate",
+    "test:todos": "node --loader ts-node/esm test_todos_api.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@openai/codex": "^0.23.0",
+    "@prisma/client": "^6.6.0",
+    "axios": "^1.9.0",
+    "bcrypt": "^5.1.1",
+    "cookie": "^1.0.2",
+    "next": "^15.3.0",
+    "node-fetch": "^3.3.2",
+    "prisma": "^6.6.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/cookie": "^1.0.0",
+    "@types/node": "^22.14.1",
+    "@types/node-fetch": "^2.6.12",
+    "@types/react": "^19.1.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.2"
+  }
 }

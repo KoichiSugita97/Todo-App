@@ -1,4 +1,5 @@
-version: "3.8"
+
+version: "3.9"
 
 services:
   web:
@@ -6,24 +7,26 @@ services:
     container_name: tododot-web
     ports:
       - "3000:3000"
+    env_file:
+      - ./.env
+    # 環境変数を .env から読み込みたい場合は下記を有効にしてください
+    # env_file:
+    #   - ./.env
     environment:
       NODE_ENV: development
-      # .env を使う場合は env_file で環境変数を読み込むことも可能
-      # DATABASE_URL=postgresql://user:password@db:5432/mydbname など
+      # DATABASE_URL は .env で管理するのが一般的です。
+      # DATABASE_URL: "postgresql://user:password@db:5432/mydbname"
     depends_on:
       - db
-    volumes:
-      - .:/app
-      - /app/node_modules
-    command: npm run dev  # 開発環境でホットリロード等を行う場合、開発用コマンドを指定
+    # volumes and command override removed to use Dockerfile defaults
 
   db:
     image: postgres:15
     container_name: tododot-db
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydbname
+      POSTGRES_USER: postgres         # 必要に応じて変更してください（開発用ならそのままでも問題ありません）
+      POSTGRES_PASSWORD: postgres   # 必要に応じて変更してください
+      POSTGRES_DB: mydb         # 必要に応じて変更してください
     ports:
       - "5432:5432"
     volumes:
